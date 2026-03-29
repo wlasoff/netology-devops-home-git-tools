@@ -99,9 +99,17 @@ git log -S globalPluginDirs --format="%h %an %s"
 ```
 ![z25](https://github.com/wlasoff/netology-devops-home-git-tools/blob/main/img/z25.png)
 
-2.6 Автора функции `synchronizedWriters` - Martin Atkins <mart@degeneration.co.uk>
+2.6 Автор функции `synchronizedWriters` - Martin Atkins <mart@degeneration.co.uk>
 найден с помощью команды:
 
 ```bash
 git log -S globalPluginDirs --format="%h %an %s"
 ```
+![z26](https://github.com/wlasoff/netology-devops-home-git-tools/blob/main/img/z26.png)
+
+Вот доказательство о том, что он первый был:
+```bash
+git log -G "synchronizedWriters|globalPluginDirs" --format="%ai %an <%ae>" --reverse
+```
+![z26-1](https://github.com/wlasoff/netology-devops-home-git-tools/blob/main/img/z26-1.png)
+
