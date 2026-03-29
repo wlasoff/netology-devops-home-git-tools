@@ -80,21 +80,11 @@ git show b8d720 --parents
 
 2.3 Так выглядят хеши и комментарии всех коммитов, которые были сделаны между тегами  v0.12.23 и v0.12.24:
 ```bash
-lastir@pmx-netology:~/github/terraform$ git log v0.12.23^..v0.12.24 --oneline
-33ff1c03bb (tag: v0.12.24) v0.12.24
-b14b74c493 [Website] vmc provider links
-3f235065b9 Update CHANGELOG.md
-6ae64e247b registry: Fix panic when server is unreachable
-5c619ca1ba website: Remove links to the getting started guide's old location
-06275647e2 Update CHANGELOG.md
-d5f9411f51 command: Fix bug when using terraform login on Windows
-4b6d06cc5d Update CHANGELOG.md
-dd01a35078 Update CHANGELOG.md
-225466bc3e Cleanup after v0.12.23 release
-85024d3100 (tag: v0.12.23) v0.12.23
-lastir@pmx-netology:~/github/terraform$
+git log v0.12.23^..v0.12.24 --oneline
 ```
-* коммит, в котором была создана функция `func providerSource` - commit 8c928e83589d90a031f811fae52a81be7153e82f
+![z23](https://github.com/wlasoff/netology-devops-home-git-tools/blob/main/img/z23.png)
+
+2.4 коммит, в котором была создана функция `func providerSource` - commit 8c928e83589d90a031f811fae52a81be7153e82f
 нашел с помощью команд:
 ```bash
 lastir@pmx-netology:~/github/terraform$ git grep -p -n 'func providerSource('
