@@ -74,9 +74,7 @@ git log 85024d3 -1
 
 2.2 У коммита `b8d720` всего 2 родителя: 56cd7859e05c36c06b56d013b55a252d0bb7e158 9ea88f22fc6269854151c571162c5bcf958bee2b
 ```bash
-lastir@pmx-netology:~/github/terraform$ git show b8d720 --parents
-commit b8d720f8340221f2146e4e4870bf2ee0bc48f2d5 56cd7859e05c36c06b56d013b55a252d0bb7e158 9ea88f22fc6269854151c571162c5bcf958bee2b
-Merge: 56cd7859e0 9ea88f22fc
+git show b8d720 --parents
 ```
 ![z22](https://github.com/wlasoff/netology-devops-home-git-tools/blob/main/img/z22.png)
 
