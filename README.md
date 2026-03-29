@@ -60,6 +60,8 @@ git show aefea
 git log aefea -1
 
 ```
+![z1](https://github.com/wlasoff/netology-devops-home-git-tools/blob/main/img/z1.png)
+
 ## Ответ вопрос 2 в задании:
 
 2.1 У коммита `85024d3` есть соответствие только тэгу 'v0.12.23'
@@ -68,7 +70,7 @@ git log aefea -1
 git show 85024d3
 git log 85024d3 -1
 ```
-![z1](https://github.com/wlasoff/netology-devops-home-git-tools/blob/main/img/z1.png)
+![z21](https://github.com/wlasoff/netology-devops-home-git-tools/blob/main/img/z21.png)
 
 2.2 У коммита `b8d720` всего 2 родителя: 56cd7859e05c36c06b56d013b55a252d0bb7e158 9ea88f22fc6269854151c571162c5bcf958bee2b
 ```bash
@@ -76,6 +78,8 @@ lastir@pmx-netology:~/github/terraform$ git show b8d720 --parents
 commit b8d720f8340221f2146e4e4870bf2ee0bc48f2d5 56cd7859e05c36c06b56d013b55a252d0bb7e158 9ea88f22fc6269854151c571162c5bcf958bee2b
 Merge: 56cd7859e0 9ea88f22fc
 ```
+![z22](https://github.com/wlasoff/netology-devops-home-git-tools/blob/main/img/z22.png)
+
 2.3 Так выглядят хеши и комментарии всех коммитов, которые были сделаны между тегами  v0.12.23 и v0.12.24:
 ```bash
 lastir@pmx-netology:~/github/terraform$ git log v0.12.23^..v0.12.24 --oneline
