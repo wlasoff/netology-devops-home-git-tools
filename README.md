@@ -1,4 +1,4 @@
-# Домашнее задание к занятию «Инструменты Git» - Студент группы FOPS-42 Власов Владимир
+<img width="1220" height="97" alt="image" src="https://github.com/user-attachments/assets/c5c5f5b1-53da-4ac7-8e06-489041e0241f" /># Домашнее задание к занятию «Инструменты Git» - Студент группы FOPS-42 Власов Владимир
 
 ### Цель задания
 
@@ -80,21 +80,19 @@ git show b8d720 --parents
 
 2.3 Так выглядят хеши и комментарии всех коммитов, которые были сделаны между тегами  v0.12.23 и v0.12.24:
 ```bash
-git log v0.12.23^..v0.12.24 --oneline
+git log v0.12.23..v0.12.24 --oneline
 ```
 ![z23](https://github.com/wlasoff/netology-devops-home-git-tools/blob/main/img/z23.png)
 
-2.4 коммит, в котором была создана функция `func providerSource` - commit 8c928e83589d90a031f811fae52a81be7153e82f
-нашел с помощью команд:
+2.4 Коммит, в котором была создана функция `func providerSource` - commit 8c928e83589d90a031f811fae52a81be7153e82f
+нашел так:
 ```bash
-lastir@pmx-netology:~/github/terraform$ git grep -p -n 'func providerSource('
-provider_source.go=6=import (
-provider_source.go:26:func providerSource(configs []*cliconfig.ProviderInstallation, services *disco.Disco) (getproviders.Source, tfdiags.Diagnostics) {
-lastir@pmx-netology:~/github/terraform$
-lastir@pmx-netology:~/github/terraform$ git log -L :providerSource:provider_source.go
+git log -S "func providerSource" --format="%h %an %s"
 ```
-первой командой определил в каком файле эта функция, а следующей список коммитов ее изменяющие, выбрал самый первый коммит
-* все коммиты, в которых была изменена функция `globalPluginDirs`
+![z24](https://github.com/wlasoff/netology-devops-home-git-tools/blob/main/img/z24.png)
+
+2.5 все коммиты, в которых была изменена функция `globalPluginDirs`
+
 ```bash
 lastir@pmx-netology:~/github/terraform$ git log -S "globalPluginDirs" --oneline
 7c4aeac5f3 stacks: load credentials from config file on startup (#35952)
@@ -107,7 +105,7 @@ c0b1761096 prevent log output during init
 8364383c35 Push plugin discovery down into command package
 lastir@pmx-netology:~/github/terraform$
 ```
-* автор функции `synchronizedWriters` - Martin Atkins <mart@degeneration.co.uk>
+2.6 автор функции `synchronizedWriters` - Martin Atkins <mart@degeneration.co.uk>
 выполнил git grep 'synchronizedWriters' и ничего не нашел, поэтому как и в предыдущем варианте искал через git log -S
 ```bash
 lastir@pmx-netology:~/github/terraform$ git grep 'synchronizedWriters'
