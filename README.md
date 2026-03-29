@@ -85,104 +85,23 @@ git log v0.12.23..v0.12.24 --oneline
 ![z23](https://github.com/wlasoff/netology-devops-home-git-tools/blob/main/img/z23.png)
 
 2.4 Коммит, в котором была создана функция `func providerSource` - commit 8c928e83589d90a031f811fae52a81be7153e82f
-нашел так:
+найден с помощью команды:
+
 ```bash
 git log -S "func providerSource" --format="%h %an %s"
 ```
 ![z24](https://github.com/wlasoff/netology-devops-home-git-tools/blob/main/img/z24.png)
 
-2.5 все коммиты, в которых была изменена функция `globalPluginDirs`
+2.5 Все коммиты, в которых была изменена функция `globalPluginDirs` найдем с помощью команды:
 
 ```bash
-lastir@pmx-netology:~/github/terraform$ git log -S "globalPluginDirs" --oneline
-7c4aeac5f3 stacks: load credentials from config file on startup (#35952)
-65c4ba7363 Remove terraform binary
-125eb51dc4 Remove accidentally-committed binary
-22c121df86 Bump compatibility version to 1.3.0 for terraform core release (#30988)
-7c7e5d8f0a Don't show data while input if sensitive
-35a058fb3d main: configure credentials from the CLI config file
-c0b1761096 prevent log output during init
-8364383c35 Push plugin discovery down into command package
-lastir@pmx-netology:~/github/terraform$
+git log -S globalPluginDirs --format="%h %an %s"
 ```
-2.6 автор функции `synchronizedWriters` - Martin Atkins <mart@degeneration.co.uk>
-выполнил git grep 'synchronizedWriters' и ничего не нашел, поэтому как и в предыдущем варианте искал через git log -S
+![z25](https://github.com/wlasoff/netology-devops-home-git-tools/blob/main/img/z25.png)
+
+2.6 Автора функции `synchronizedWriters` - Martin Atkins <mart@degeneration.co.uk>
+найден с помощью команды:
+
 ```bash
-lastir@pmx-netology:~/github/terraform$ git grep 'synchronizedWriters'
-lastir@pmx-netology:~/github/terraform$
-lastir@pmx-netology:~/github/terraform$ git log -S synchronizedWriters
-commit bdfea50cc85161dea41be0fe3381fd98731ff786
-Author: James Bardin <j.bardin@gmail.com>
-Date:   Mon Nov 30 18:02:04 2020 -0500
-
-    remove unused
-
-commit fd4f7eb0b935e5a838810564fd549afe710ae19a
-Author: James Bardin <j.bardin@gmail.com>
-Date:   Wed Oct 21 13:06:23 2020 -0400
-
-    remove prefixed io
-
-    The main process is now handling what output to print, so it doesn't do
-    any good to try and run it through prefixedio, which is only adding
-    extra coordination to echo the same data.
-
-commit 5ac311e2a91e381e2f52234668b49ba670aa0fe5
-Author: Martin Atkins <mart@degeneration.co.uk>
-Date:   Wed May 3 16:25:41 2017 -0700
-
-    main: synchronize writes to VT100-faker on Windows
-
-    We use a third-party library "colorable" to translate VT100 color
-    sequences into Windows console attribute-setting calls when Terraform is
-    running on Windows.
-
-    colorable is not concurrency-safe for multiple writes to the same console,
-    because it writes to the console one character at a time and so two
-    concurrent writers get their characters interleaved, creating unreadable
-    garble.
-
-    Here we wrap around it a synchronization mechanism to ensure that there
-    can be only one Write call outstanding across both stderr and stdout,
-    mimicking the usual behavior we expect (when stderr/stdout are a normal
-    file handle) of each Write being completed atomically.
-lastir@pmx-netology:~/github/terraform$ git show 5ac311e2a91e381e2f52234668b49ba670aa0fe5
-commit 5ac311e2a91e381e2f52234668b49ba670aa0fe5
-Author: Martin Atkins <mart@degeneration.co.uk>
-Date:   Wed May 3 16:25:41 2017 -0700
-...
-+++ b/synchronized_writers.go
-@@ -0,0 +1,31 @@
-+package main
-+
-+import (
-+       "io"
-+       "sync"
-+)
-+
-+type synchronizedWriter struct {
-+       io.Writer
-+       mutex *sync.Mutex
-+}
-+
-+// synchronizedWriters takes a set of writers and returns wrappers that ensure
-+// that only one write can be outstanding at a time across the whole set.
-+func synchronizedWriters(targets ...io.Writer) []io.Writer {
-+       mutex := &sync.Mutex{}
-+       ret := make([]io.Writer, len(targets))
-+       for i, target := range targets {
-+               ret[i] = &synchronizedWriter{
-+                       Writer: target,
-+                       mutex:  mutex,
-+               }
-+       }
-+       return ret
-+}
-+
-+func (w *synchronizedWriter) Write(p []byte) (int, error) {
-+       w.mutex.Lock()
-+       defer w.mutex.Unlock()
-+       return w.Writer.Write(p)
-+}
-
+git log -S globalPluginDirs --format="%h %an %s"
 ```
